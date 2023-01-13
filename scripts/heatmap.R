@@ -1,3 +1,3 @@
 library("pheatmap")
-pheatmap(cor(scaled_gene_counts_df))
-heatmap(cor(scaled_gene_counts_df))
+pheatmap(cor(normalised_gene_counts_df))
+heatmap(cor(normalised_gene_counts_df))

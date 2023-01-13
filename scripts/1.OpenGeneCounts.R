@@ -29,5 +29,5 @@ gene_counts_df<-head(gene_counts_df,-5)
 #gene_counts_df<-data.matrix(gene_counts_df)
 
 
-rm(list=ls())
+
 
