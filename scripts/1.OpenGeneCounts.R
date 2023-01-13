@@ -19,7 +19,10 @@ gene_counts_df
 rownames(gene_counts_df)<-rows[[1]]
 
 gene_counts_df[1]<-NULL
+#Remove first 5 rows
+gene_counts_df<-head(gene_counts_df,-5)
 #colnames(gene_counts_df)<-cols
+
 
 #colnames(gene_counts_df)[1]<-"gene_id"
 #test=read.table(paste("raw/",counts_files[9],sep=""),sep="\t")[2]
