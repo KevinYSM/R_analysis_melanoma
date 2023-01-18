@@ -1,6 +1,6 @@
 library(factoextra)
 library(cluster)
-oncogenes_normalised_df<-b
+oncogenes_normalised_df<-get_oncogenes_df()
 scaled_normalised_gene_counts_df<-scale(oncogenes_normalised_df)
 
 #define linkage methods
@@ -31,3 +31,4 @@ gap_stat <- clusGap(scaled_normalised_gene_counts_df, FUN = hcut, nstart = 25, K
 
 #produce plot of clusters vs. gap statistic
 fviz_gap_stat(gap_stat)
+
