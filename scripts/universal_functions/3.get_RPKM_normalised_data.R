@@ -1,4 +1,4 @@
-#get_RPKM_normalised_data<-function(){
+get_RPKM_normalised_data<-function(){
   gene_counts_df<-open_gene_counts()
   gene_lengths<-get_gene_lengths()
   gene_names<-rownames(gene_counts_df)
@@ -29,8 +29,8 @@
   
   #Remove N/A rows
   normalised_gene_counts_df<-na.omit(normalised_gene_counts_df)
-  #return(normalised_gene_counts_df)
-#}
+  return(normalised_gene_counts_df)
+}
 
 
-gene_counts_df[5,]
+#gene_counts_df[5,]
