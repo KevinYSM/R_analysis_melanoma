@@ -1,26 +1,44 @@
 RPKM_gene_counts_df<-get_RPKM_normalised_data()
 
+
+#FILTER GENES EXPRESSED IN LESS THAN X samples
+X=5
+filtered_expression_df_1<-RPKM_gene_counts_df[rowSums(RPKM_gene_counts_df > 0)>=X,] 
+
 #KEEP TOP N genes based on gene expression
 N=15000
 
-MEAN_df<-data.matrix(apply(RPKM_gene_counts_df,1,mean))
+MEAN_df<-data.matrix(apply(filtered_expression_df_1,1,mean))
 MEAN_df<-data.matrix(sort(MEAN_df[,1], decreasing=TRUE),)
 top_N_genes<-data.matrix(head(rownames(MEAN_df),N))
 
 
-filtered_expression_df_1<-subset(RPKM_gene_counts_df, rownames(RPKM_gene_counts_df) %in% top_N_genes)
+filtered_expression_df_2<-subset(filtered_expression_df_1, rownames(filtered_expression_df_1) %in% top_N_genes)
 
-#FILTER GENES EXPRESSED IN LESS THAN X samples
-X=5
 
-filtered_expression_df_2<-filtered_expression_df_1[rowSums(filtered_expression_df_1 > 0)>=X,] 
-#log2RPKM analysis of data to get 50 most impactful genes
+
+
+#Filter top Y most impactful genes from coefficient of variation DF.
+Y=10000
+coefficient_variation_df<-(apply(filtered_expression_df_2,1,sd)/rowMeans(filtered_expression_df_2))
+
+
+top_Y_genes<-names(head(sort(abs(coefficient_variation_df),decreasing=TRUE),n=Y))
+
+#Subset RPKM values
+filtered_RPKM_values<-subset(RPKM_gene_counts_df, rownames(RPKM_gene_counts_df) %in% top_Y_genes)
+
+
+
+hist(coefficient_variation_df, breaks=30)
+head(sort(coefficient_variation_df, decreasing=TRUE), 50)
+
+
+#
+
+#log2RPKM+1 data
 
 log2_RPKM_data<-log2(filtered_expression_df_2+1)
-coefficient_variation_df<-apply(log2_RPKM_data,1,sd)/rowMeans(log2_RPKM_data)
-hist(coefficient_variation_df, breaks=30)
-
-head(sort(coefficient_variation_df, decreasing=TRUE), 50)
 
 #Coefficient of Variation
 a<-apply(m,1,sd)
