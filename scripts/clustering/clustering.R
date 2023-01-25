@@ -1,6 +1,6 @@
 library(factoextra)
 library(cluster)
-oncogenes_normalised_df<-get_oncogenes_df()
+oncogenes_normalised_df<-get_oncogenes_count_df()
 scaled_normalised_gene_counts_df<-scale(oncogenes_normalised_df)
 
 #define linkage methods

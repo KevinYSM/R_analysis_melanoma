@@ -1,5 +1,7 @@
-get_oncogenes_df <- function() {
-  oncogene_data<-read.csv("scripts/melanoma_genes_heatmap/Census_allSun Jan 15 04_37_51 2023.csv")
+#data from https://cancer.sanger.ac.uk/census
+#Cancer Gene Census data. Genes that have been causally implicated in cancer
+get_oncogenes_count_df <- function() {
+  oncogene_data<-read.csv("data/COSMIC_data/cancer_gene_census_data/Census_allSun Jan 15 04_37_51 2023.csv")
   
   num_cols<-length(colnames(oncogene_data))
   num_rows<-length(rownames(oncogene_data))
@@ -16,4 +18,30 @@ get_oncogenes_df <- function() {
   return(filtered_gene_counts_df)
 }
 
-#oncogenes<-get_oncogenes_df()
+get_census_genes_list <- function(gene_role) {
+  #Gene_role = "oncogene" or "TSG"
+  #Filters for TSG, Oncogene, and Tier 1 cancer census genes
+  oncogene_data<-read.csv("data/COSMIC_data/cancer_gene_census_data/Census_allSun Jan 15 04_37_51 2023.csv")
+  num_cols<-length(colnames(oncogene_data))
+  num_rows<-length(rownames(oncogene_data))
+  oncogenes<-list()
+  
+  #Filter by:
+  # 1. Tier ==1
+  # 2. Include if Role.in.cancer includes  "TSG" or "oncogene"
+  
+  
+  #1 
+  filter_1<-oncogene_data[oncogene_data$Tier=='1',]
+  
+  #2
+  filter_2<-filter_1[grepl(gene_role,filter_1$Role.in.Cancer),]
+ 
+
+  #Perhaps as a separate analysis/additional information:
+  # 1. Tumor.types.somatic includes "melanoma"
+  oncogenes<-filter_2[,1]
+  return(oncogenes)
+}
+filtered_census_genes<-as.list(get_oncogenes_list())
+

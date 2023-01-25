@@ -38,7 +38,7 @@ head(sort(coefficient_variation_df, decreasing=TRUE), 50)
 
 #log2RPKM+1 data
 
-log2_RPKM_data<-log2(filtered_expression_df_2+1)
+log2_RPKM_data<-log2(filtered_expression_df_2+0.00001)
 
 #Coefficient of Variation
 a<-apply(m,1,sd)
