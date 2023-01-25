@@ -28,7 +28,7 @@ library(cluster)
 filtered_RPKM_values
 
 # LOG TRANSFORM GENE VALUES
-log_transformed_sample_counts<-t(log2(filtered_RPKM_values+0.00000000000000001))
+log_transformed_sample_counts<-t(log2(filtered_RPKM_values+1))
 
 
 # PERFORM PCA

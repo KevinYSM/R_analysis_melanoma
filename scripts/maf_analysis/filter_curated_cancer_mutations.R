@@ -33,7 +33,7 @@ TSG_list<-get_census_genes_list("TSG")
   
   
   #Filter MAF data based on cosmic mutation data
-  laml_oncogenes_filtered<-subset(maf_table, cancer_mutations_data_filtered$joined_gene_aa %in% maf_table$joined_gene_aa)
+  laml_oncogenes_filtered<-subset(maf_table, maf_table$joined_gene_aa %in% cancer_mutations_data_filtered$joined_gene_aa)
   
   
 #}
