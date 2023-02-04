@@ -547,6 +547,7 @@ dev.off()
 genome_cytoband <- get_genome_cytoband(fai_path)
 
 cnv_genes <- categs.tab$cnv.cgc.excel$All_CGC_in_regions
+cnv_genes <- cnv_genes[which(cnv_genes$Tier==1 & cnv_genes$Role.in.Cancer!=""),]
 cnv_genes$sname <- str_split_fixed(cnv_genes$sname, "_vs", 2)[,1]
 cnv_genes$sname <- gsub(pattern="PCB-", replacement = "", cnv_genes$sname)
 cnv_genes$sname <- gsub(pattern="PCB", replacement = "", cnv_genes$sname)

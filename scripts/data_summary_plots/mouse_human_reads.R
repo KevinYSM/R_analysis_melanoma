@@ -28,9 +28,11 @@ for (counts in mouse_data){
 }
 bar_plot_df<-na.omit(bar_plot_df)
 bar_plot_df$read_count<-as.numeric(bar_plot_df$read_count)
+bar_plot_df$sample<-substr(bar_plot_df$sample,5,6) 
 pdf(file= "test", width=3, height=5)
+bar_plot_df$read_type<-factor(bar_plot_df$read_type, levels=c("ambiguous","mouse","human"))
 ggplot(bar_plot_df, aes(fill=read_type, y=read_count, x=sample)) + 
-  geom_bar(position="stack", stat="identity")
+  geom_bar(position="fill", stat="identity", inherit.aes = T)
 dev.off()
 #position: fill, dodge, stack
 ggplot(counts_df, aes(x=sample, y=human_reads))+geom_bar(stat="identity")
