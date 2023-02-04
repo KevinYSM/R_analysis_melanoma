@@ -8,3 +8,7 @@
 data/
 /data/
 >>>>>>> 490b4fa2d06ff457df9304860aae0a8970c9358a
+laml_maftools.maf
+.RData
+.Rhistory
+.RData

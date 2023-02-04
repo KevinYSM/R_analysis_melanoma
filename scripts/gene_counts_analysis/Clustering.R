@@ -24,6 +24,4 @@ if (!exists("log2_RPKM")){
 plot(pheatmap(cor(log2_filtered_RPKM))$tree_row)
 table(cutree(pheatmap(cor(log2_filtered_RPKM))$tree_row,4))
 
-#Calculating sample average RPKM
-means<-log2(na.omit(RPKM_data/rowMeans(RPKM_data))+1)
 
