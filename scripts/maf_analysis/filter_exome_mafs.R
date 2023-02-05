@@ -55,8 +55,8 @@ df_filtered_maf$Tumor_Sample_Barcode<-gsub("PCB","",df_filtered_maf$Tumor_Sample
 df_filtered_maf$Tumor_Sample_Barcode<-gsub("PDX","",df_filtered_maf$Tumor_Sample_Barcode)
 df_filtered_maf$Tumor_Sample_Barcode<-gsub("_vs_","_",df_filtered_maf$Tumor_Sample_Barcode)
 df_filtered_maf$Tumor_Sample_Barcode<-gsub("-","",df_filtered_maf$Tumor_Sample_Barcode)
-
-oncoplot(maf=read.maf(df_filtered_maf), top=20, removeNonMutated = F,showTumorSampleBarcodes = T, minMut=2)
+df_filtered_maf$Tumor_Sample_Barcode<-substr(df_filtered_maf$Tumor_Sample_Barcode,1,2)
+oncoplot(maf=read.maf(df_filtered_maf), minMut=3, top=5, removeNonMutated = F,showTumorSampleBarcodes = T)
 plotmafSummary(maf = read.maf(df_filtered_maf), rmOutlier = TRUE, addStat = 'median', dashboard = TRUE, titvRaw = FALSE)
 
 update_gene_sample_counts<-function(maf_list=maf_files){

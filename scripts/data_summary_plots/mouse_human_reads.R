@@ -36,3 +36,14 @@ ggplot(bar_plot_df, aes(fill=read_type, y=read_count, x=sample)) +
 dev.off()
 #position: fill, dodge, stack
 ggplot(counts_df, aes(x=sample, y=human_reads))+geom_bar(stat="identity")
+
+
+#Mouse vs human stats
+counts_df$mouse_reads<-as.numeric(counts_df$mouse_reads)
+counts_df$human_reads<-as.numeric(counts_df$human_reads)
+counts_df$ambiguous_reads<-as.numeric(counts_df$ambiguous_reads)
+print(paste("Human Reads Percent", sum(counts_df$human_reads)/(sum(counts_df$mouse_reads)+sum(counts_df$human_reads)+sum(counts_df$ambiguous_reads))*100))
+print(paste("Mouse Reads Percent", sum(counts_df$mouse_reads)/(sum(counts_df$mouse_reads)+sum(counts_df$human_reads)+sum(counts_df$ambiguous_reads))*100))
+print(paste("Ambiguous Reads Percent", sum(counts_df$ambiguous_reads)/(sum(counts_df$mouse_reads)+sum(counts_df$human_reads)+sum(counts_df$ambiguous_reads))*100))
+
+      
