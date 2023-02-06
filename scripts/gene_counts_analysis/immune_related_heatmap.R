@@ -38,6 +38,10 @@ if (!exists("interleukin_gene_filtered_RPKM")){
   interleukin_gene_filtered_RPKM<-log2_filtered_RPKM[rownames(log2_filtered_RPKM) %in% immune_related_genes$interleukins,]
 }
 
+if (!exists("all_immune_gene_filtered_RPKM")){
+  all_immune_gene_filtered_RPKM<-log2_filtered_RPKM[rownames(log2_filtered_RPKM) %in% immune_related_genes$interleukins,]
+}
+
 
 #Generate metadata
 heatmap_metadata<-as.data.frame(read_excel("data/sample_info_v3.xlsx", trim_ws=TRUE))
@@ -65,5 +69,6 @@ pheatmap(interleukin_gene_filtered_RPKM, border_color = NA, annotation_col = hea
 pheatmap(unique(rbind(rbind(interleukin_gene_filtered_RPKM, immune_gene_filtered_RPKM),chemokine_gene_filtered_RPKM),border_color = NA, annotation_col = heatmap_metadata))
 
 cor_16_36_genes=c("B2M", "HLA-DQA1","HLA-DQB1","CD274","CXCL10","CXCL11","CXCL9","IL32")
-pheatmap(unique(rbind(rbind(interleukin_gene_filtered_RPKM, immune_gene_filtered_RPKM),chemokine_gene_filtered_RPKM)[cor_16_36_genes,],border_color = NA, annotation_col = heatmap_metadata))
+pheatmap(unique(rbind(rbind(interleukin_gene_filtered_RPKM, immune_gene_filtered_RPKM),chemokine_gene_filtered_RPKM)[cor_16_36_genes,],border_color = NA, annotation_col = heatmap_metadata, breaks=NA))
+pheatmap(log2_filtered_RPKM[cor_16_36_genes,],border_color = NA, annotation_col = heatmap_metadata, breaks=NA)
 
