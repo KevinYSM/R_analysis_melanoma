@@ -63,3 +63,7 @@ pheatmap(immune_gene_filtered_RPKM, border_color = NA, annotation_col = heatmap_
 pheatmap(chemokine_gene_filtered_RPKM, border_color = NA, annotation_col = heatmap_metadata)
 pheatmap(interleukin_gene_filtered_RPKM, border_color = NA, annotation_col = heatmap_metadata)
 pheatmap(unique(rbind(rbind(interleukin_gene_filtered_RPKM, immune_gene_filtered_RPKM),chemokine_gene_filtered_RPKM),border_color = NA, annotation_col = heatmap_metadata))
+
+cor_16_36_genes=c("B2M", "HLA-DQA1","HLA-DQB1","CD274","CXCL10","CXCL11","CXCL9","IL32")
+pheatmap(unique(rbind(rbind(interleukin_gene_filtered_RPKM, immune_gene_filtered_RPKM),chemokine_gene_filtered_RPKM)[cor_16_36_genes,],border_color = NA, annotation_col = heatmap_metadata))
+
